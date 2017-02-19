@@ -1,7 +1,6 @@
 import week1._
 
 object json {
-
   val data: JSON = JObj(Map(
     "firstName" -> JStr("John"),
     "lastName" -> JStr("Smith"),
@@ -22,9 +21,18 @@ object json {
     ))
   ))
 
-
-  def show(json:JSON):String = json match {
-    case JSeq(elems) => "[" + (elems map show mkString ", ") + "]"
+  def show(json: JSON): String = json match {
+    case JSeq(elems) => "[" + elems.map(show).mkString(", ") + "]"
+    case JObj(bindings) =>
+      val assocs = bindings.map {
+        case (key, value) => "\"" + key + "\": " + show(value)
+      }
+      "{" + assocs.mkString(", ") + "}"
+    case JNum(num) => num.toString
+    case JStr(str) => "\"" + str + "\""
+    case JBool(b) => b.toString
+    case JNull => "null"
   }
 
+  show(data)
 }
