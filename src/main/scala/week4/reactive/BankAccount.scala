@@ -1,5 +1,7 @@
 package week4.reactive
 
+import week4.frp.Var
+
 class BankAccount {
 
   val balance = Var(0)

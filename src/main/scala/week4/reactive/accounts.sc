@@ -1,4 +1,5 @@
-import week4.reactive.{BankAccount, Signal}
+import week4.frp.Signal
+import week4.reactive.BankAccount
 
 object accounts {
   def consolidated(accts: List[BankAccount]): Signal[Int] = {
